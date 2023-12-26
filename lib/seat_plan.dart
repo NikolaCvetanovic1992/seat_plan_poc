@@ -1259,6 +1259,13 @@ class SeatPlanScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(actions: [
+        TextButton(
+            onPressed: () {
+              'SnackBar.postMessage(`helloooo`)';
+            },
+            child: const Text('open snackbar')),
+      ]),
       body: SingleChildScrollView(
         child: Center(
           child: Column(
