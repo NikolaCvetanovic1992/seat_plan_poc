@@ -1419,7 +1419,7 @@ class SeatPlanScreen extends StatelessWidget {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            js.context.callMethod('SnackBar.postMessage',
+            js.context.callMethod('sendMessagetoFlutter',
                 ['Flutter is calling upon JavaScript!']);
           },
           child: const Icon(Icons.send),
