@@ -1,5 +1,4 @@
-import 'dart:html';
-
+import 'dart:js' as js;
 import 'package:flutter/material.dart';
 
 final Map<String, dynamic> seat_plan = {
@@ -1261,160 +1260,169 @@ class SeatPlanScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Wrap(
-                runSpacing: 20,
-                children: [
-                  Container(
-                    width: 500,
-                    padding:
-                        const EdgeInsets.only(left: 10, bottom: 10, top: 10),
-                    color: Colors.blueGrey,
-                    child: Column(
-                      children: [
-                        const Row(
-                          children: [Text('Choose seats')],
-                        ),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        Row(
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text('Flight No'),
-                                Text(flightNumber),
-                              ],
-                            ),
-                            const SizedBox(
-                              width: 20,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [const Text('Date'), Text(date)],
-                            ),
-                            const SizedBox(
-                              width: 20,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text('Booking Ref'),
-                                Text(bookRef),
-                              ],
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Container(
-                          padding: const EdgeInsets.all(10),
-                          child: Column(
+        body: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Wrap(
+                  runSpacing: 20,
+                  children: [
+                    Container(
+                      width: 500,
+                      padding:
+                          const EdgeInsets.only(left: 10, bottom: 10, top: 10),
+                      color: Colors.blueGrey,
+                      child: Column(
+                        children: [
+                          const Row(
+                            children: [Text('Choose seats')],
+                          ),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          Row(
                             children: [
-                              for (var passenger in bookedPassengers)
-                                Container(
-                                  decoration: const BoxDecoration(
-                                      color: Colors.black,
-                                      border: Border(
-                                          right: BorderSide(
-                                              color: Colors.red, width: 5))),
-                                  padding: const EdgeInsets.all(15),
-                                  margin: const EdgeInsets.only(bottom: 5),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        '${passenger['passenger_name']}/${passenger['book_ref']}',
-                                        style: const TextStyle(
-                                            color: Colors.white),
-                                      ),
-                                      Text(
-                                        passenger['seat'],
-                                        style: const TextStyle(
-                                            color: Colors.white),
-                                      ),
-                                    ],
-                                  ),
-                                ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text('Flight No'),
+                                  Text(flightNumber),
+                                ],
+                              ),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [const Text('Date'), Text(date)],
+                              ),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text('Booking Ref'),
+                                  Text(bookRef),
+                                ],
+                              ),
                             ],
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  FittedBox(
-                    child: Container(
-                        height: 800,
-                        width: numOfSeatsPerRow.length * 65,
-                        color: Colors.grey,
-                        child: Container(
-                          padding:
-                              const EdgeInsets.fromLTRB(5.0, 200.0, 5.0, 50.0),
-                          margin: const EdgeInsets.fromLTRB(50, 5, 20.0, 5),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            border: Border.all(
-                              color: Colors.black,
-                              width: 1.0,
-                            ),
-                            borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(200),
-                              topRight: Radius.circular(200),
-                              bottomLeft: Radius.circular(10),
-                              bottomRight: Radius.circular(10),
-                            ),
+                          const SizedBox(
+                            height: 20,
                           ),
-                          child: SingleChildScrollView(
-                            child: Column(children: [
-                              for (var seatPlanRow in seatPlanList)
-                                SizedBox(
-                                  width: double.maxFinite,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      for (var seatPlan
-                                          in seatPlanRow['seat_plan_position'])
-                                        Container(
-                                          color: seats.contains(
-                                                  seatPlan['seat_number'])
-                                              ? Colors.green
-                                              : seatPlan['seat_number'] == 'Ai'
-                                                  ? Colors.transparent
-                                                  : Colors.grey,
-                                          padding: const EdgeInsets.all(3),
-                                          margin: const EdgeInsets.all(5),
-                                          height: 40,
-                                          width: 40,
-                                          child: Center(
-                                              child: seatPlan['seat_number'] !=
-                                                      'Ai'
-                                                  ? Text(
-                                                      seatPlan['seat_number'])
-                                                  : null),
-                                        )
-                                    ],
+                          Container(
+                            padding: const EdgeInsets.all(10),
+                            child: Column(
+                              children: [
+                                for (var passenger in bookedPassengers)
+                                  Container(
+                                    decoration: const BoxDecoration(
+                                        color: Colors.black,
+                                        border: Border(
+                                            right: BorderSide(
+                                                color: Colors.red, width: 5))),
+                                    padding: const EdgeInsets.all(15),
+                                    margin: const EdgeInsets.only(bottom: 5),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          '${passenger['passenger_name']}/${passenger['book_ref']}',
+                                          style: const TextStyle(
+                                              color: Colors.white),
+                                        ),
+                                        Text(
+                                          passenger['seat'],
+                                          style: const TextStyle(
+                                              color: Colors.white),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                )
-                              // Text('${seatPlanRow['row']}'),
-                            ]),
+                              ],
+                            ),
                           ),
-                        )),
-                  ),
-                ],
-              ),
-            ],
+                        ],
+                      ),
+                    ),
+                    FittedBox(
+                      child: Container(
+                          height: 800,
+                          width: numOfSeatsPerRow.length * 65,
+                          color: Colors.grey,
+                          child: Container(
+                            padding: const EdgeInsets.fromLTRB(
+                                5.0, 200.0, 5.0, 50.0),
+                            margin: const EdgeInsets.fromLTRB(50, 5, 20.0, 5),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              border: Border.all(
+                                color: Colors.black,
+                                width: 1.0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(200),
+                                topRight: Radius.circular(200),
+                                bottomLeft: Radius.circular(10),
+                                bottomRight: Radius.circular(10),
+                              ),
+                            ),
+                            child: SingleChildScrollView(
+                              child: Column(children: [
+                                for (var seatPlanRow in seatPlanList)
+                                  SizedBox(
+                                    width: double.maxFinite,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        for (var seatPlan in seatPlanRow[
+                                            'seat_plan_position'])
+                                          Container(
+                                            color: seats.contains(
+                                                    seatPlan['seat_number'])
+                                                ? Colors.green
+                                                : seatPlan['seat_number'] ==
+                                                        'Ai'
+                                                    ? Colors.transparent
+                                                    : Colors.grey,
+                                            padding: const EdgeInsets.all(3),
+                                            margin: const EdgeInsets.all(5),
+                                            height: 40,
+                                            width: 40,
+                                            child: Center(
+                                                child: seatPlan[
+                                                            'seat_number'] !=
+                                                        'Ai'
+                                                    ? Text(
+                                                        seatPlan['seat_number'])
+                                                    : null),
+                                          )
+                                      ],
+                                    ),
+                                  )
+                                // Text('${seatPlanRow['row']}'),
+                              ]),
+                            ),
+                          )),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
-      ),
-    );
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            js.context.callMethod('SnackBar.postMessage',
+                ['Flutter is calling upon JavaScript!']);
+          },
+          child: const Icon(Icons.send),
+        ));
   }
 }
