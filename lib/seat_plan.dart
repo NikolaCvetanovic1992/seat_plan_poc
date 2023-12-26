@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 
 final Map<String, dynamic> seat_plan = {
@@ -1262,7 +1264,7 @@ class SeatPlanScreen extends StatelessWidget {
       appBar: AppBar(actions: [
         TextButton(
             onPressed: () {
-              'SnackBar.postMessage(`helloooo`)';
+              'window.SnackBar()';
             },
             child: const Text('open snackbar')),
       ]),
@@ -1423,7 +1425,7 @@ class SeatPlanScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           // Send a message to the loaded Flutter app in the WebView
-          'window.SnackBar.postMessage(`helloooo`)';
+          'window.SnackBar()';
         },
         child: const Icon(Icons.send),
       ),
