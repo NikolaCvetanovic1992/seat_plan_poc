@@ -1261,13 +1261,6 @@ class SeatPlanScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(actions: [
-        TextButton(
-            onPressed: () {
-              'window.SnackBar()';
-            },
-            child: const Text('open snackbar')),
-      ]),
       body: SingleChildScrollView(
         child: Center(
           child: Column(
@@ -1421,13 +1414,6 @@ class SeatPlanScreen extends StatelessWidget {
             ],
           ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Send a message to the loaded Flutter app in the WebView
-          'window.SnackBar()';
-        },
-        child: const Icon(Icons.send),
       ),
     );
   }
