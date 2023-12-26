@@ -1423,7 +1423,7 @@ class SeatPlanScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           // Send a message to the loaded Flutter app in the WebView
-          'SnackBar.postMessage(`helloooo`)';
+          'window.SnackBar.postMessage(`helloooo`)';
         },
         child: const Icon(Icons.send),
       ),
